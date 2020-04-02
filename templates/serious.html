@@ -2,7 +2,7 @@
 
 {% block body %}
     <script>
-    var map = {{ plot|safe }}
+    var map = {{ jsonmap|safe }}
     Plotly.plot('covidmap', map)
     </script>
 {% endblock %}
