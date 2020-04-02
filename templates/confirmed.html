@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block body %}
+        <script>
+        var maps = {{plot | safe}};
+        Plotly.plot('covidmap',maps);
+        </script>
+{% endblock %}
