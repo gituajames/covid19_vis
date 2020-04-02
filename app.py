@@ -15,10 +15,10 @@ data = table()
 # fig.write_html('index.html', full_html=True)
 
 
-def create_plot():
+def create_map(group):
     df_merge_col = pd.merge(data, iso_alpha, on='country')
 
-    fig = px.choropleth(df_merge_col, locations="iso_alpha", color="confirmed",
+    fig = px.choropleth(df_merge_col, locations="iso_alpha", color=group,
                         hover_name="country", title='confirmed covid19 cases', projection='natural earth',
                         hover_data=['recovered', 'serious', 'deceased'])
 
@@ -29,22 +29,22 @@ def create_plot():
 
 @app.route('/')
 def dashboard():
-    bar = create_plot()
-    return render_template('confirmed.html', plot=bar)
+    jsonmap = create_map(group='confirmed')
+    return render_template('confirmed.html', jsonmap=jsonmap)
 
 
 @app.route('/serious/')
 def serious():
-    bar = create_plot()
-    return render_template('serious.html', plot=bar)
+    jsonmap = create_map(group='serious')
+    return render_template('serious.html', jsonmap=jsonmap)
 
 
 @app.route('/deceased/')
 def deceased():
-    jsonmap = create_plot()
+    jsonmap = create_map(group='deceased')
     return render_template('deceased.html', jsonmap=jsonmap)
 
 @app.route('/recovered')
 def recovered():
-    jsonmap = create_plot()
+    jsonmap = create_map(group='recovered')
     return render_template('recovered.html', jsonmap=jsonmap)
