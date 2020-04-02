@@ -3,6 +3,7 @@ import geopandas as gpd
 import requests
 from bs4 import BeautifulSoup as b
 
+
 # a procedure function specific to table at 'https://ncov2019.live/'
 def table():
     # make a request to target website
@@ -23,17 +24,16 @@ def table():
         row = [i.text.replace('\n', ' ').strip() for i in td]
         all_rows.append(row)
         
-    df = pd.DataFrame(all_rows, columns=['country', 'confirmed', 'changes1', 'changes1(%)', 'deceased', 
-                                     'changes2', 'changes2(%)', 'recovered', 'serious'])
+    df = pd.DataFrame(all_rows, columns=['country', 'confirmed', 'changes1', 'changes1(%)', 'deceased',
+                                         'changes2', 'changes2(%)', 'recovered', 'serious'])
     
-    # drop any row with all None nalues
+    # drop any row with all None values
     # and unnecessary columns
     df.dropna(inplace=True)
     df.drop(index=[1], inplace=True)
     df.drop(columns=['changes1', 'changes1(%)', 'changes2', 'changes2(%)'], inplace=True)
     
-
-    # strip all the white spaces, character and puntuation marks
+    # strip all the white spaces, character and punctuation marks
     # such as commas
     copy_df = df.copy()
     copy_df['country'] = copy_df['country'].str.replace('★', '')
