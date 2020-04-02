@@ -1,0 +1,143 @@
+,iso_alpha,country
+11,AFG,Afghanistan
+23,ALB,Albania
+35,DZA,Algeria
+47,AGO,Angola
+59,ARG,Argentina
+71,AUS,Australia
+83,AUT,Austria
+95,BHR,Bahrain
+107,BGD,Bangladesh
+119,BEL,Belgium
+131,BEN,Benin
+143,BOL,Bolivia
+155,BIH,Bosnia and Herzegovina
+167,BWA,Botswana
+179,BRA,Brazil
+191,BGR,Bulgaria
+203,BFA,Burkina Faso
+215,BDI,Burundi
+227,KHM,Cambodia
+239,CMR,Cameroon
+251,CAN,Canada
+263,CAF,Central African Republic
+275,TCD,Chad
+287,CHL,Chile
+299,CHN,China
+311,COL,Colombia
+323,COM,Comoros
+335,COD,"Congo, Dem. Rep."
+347,COG,"Congo, Rep."
+359,CRI,Costa Rica
+371,CIV,Cote d'Ivoire
+383,HRV,Croatia
+395,CUB,Cuba
+407,CZE,Czech Republic
+419,DNK,Denmark
+431,DJI,Djibouti
+443,DOM,Dominican Republic
+455,ECU,Ecuador
+467,EGY,Egypt
+479,SLV,El Salvador
+491,GNQ,Equatorial Guinea
+503,ERI,Eritrea
+515,ETH,Ethiopia
+527,FIN,Finland
+539,FRA,France
+551,GAB,Gabon
+563,GMB,Gambia
+575,DEU,Germany
+587,GHA,Ghana
+599,GRC,Greece
+611,GTM,Guatemala
+623,GIN,Guinea
+635,GNB,Guinea-Bissau
+647,HTI,Haiti
+659,HND,Honduras
+671,HKG,"Hong Kong, China"
+683,HUN,Hungary
+695,ISL,Iceland
+707,IND,India
+719,IDN,Indonesia
+731,IRN,Iran
+743,IRQ,Iraq
+755,IRL,Ireland
+767,ISR,Israel
+779,ITA,Italy
+791,JAM,Jamaica
+803,JPN,Japan
+815,JOR,Jordan
+827,KEN,Kenya
+839,KOR,"Korea, Dem. Rep."
+851,KOR,"Korea, Rep."
+863,KWT,Kuwait
+875,LBN,Lebanon
+887,LSO,Lesotho
+899,LBR,Liberia
+911,LBY,Libya
+923,MDG,Madagascar
+935,MWI,Malawi
+947,MYS,Malaysia
+959,MLI,Mali
+971,MRT,Mauritania
+983,MUS,Mauritius
+995,MEX,Mexico
+1007,MNG,Mongolia
+1019,MNE,Montenegro
+1031,MAR,Morocco
+1043,MOZ,Mozambique
+1055,MMR,Myanmar
+1067,NAM,Namibia
+1079,NPL,Nepal
+1091,NLD,Netherlands
+1103,NZL,New Zealand
+1115,NIC,Nicaragua
+1127,NER,Niger
+1139,NGA,Nigeria
+1151,NOR,Norway
+1163,OMN,Oman
+1175,PAK,Pakistan
+1187,PAN,Panama
+1199,PRY,Paraguay
+1211,PER,Peru
+1223,PHL,Philippines
+1235,POL,Poland
+1247,PRT,Portugal
+1259,PRI,Puerto Rico
+1271,REU,Reunion
+1283,ROU,Romania
+1295,RWA,Rwanda
+1307,STP,Sao Tome and Principe
+1319,SAU,Saudi Arabia
+1331,SEN,Senegal
+1343,SRB,Serbia
+1355,SLE,Sierra Leone
+1367,SGP,Singapore
+1379,SVK,Slovak Republic
+1391,SVN,Slovenia
+1403,SOM,Somalia
+1415,ZAF,South Africa
+1427,ESP,Spain
+1439,LKA,Sri Lanka
+1451,SDN,Sudan
+1463,SWZ,Swaziland
+1475,SWE,Sweden
+1487,CHE,Switzerland
+1499,SYR,Syria
+1511,TWN,Taiwan
+1523,TZA,Tanzania
+1535,THA,Thailand
+1547,TGO,Togo
+1559,TTO,Trinidad and Tobago
+1571,TUN,Tunisia
+1583,TUR,Turkey
+1595,UGA,Uganda
+1607,GBR,United Kingdom
+1619,USA,United States
+1631,URY,Uruguay
+1643,VEN,Venezuela
+1655,VNM,Vietnam
+1667,PSE,West Bank and Gaza
+1679,YEM,"Yemen, Rep."
+1691,ZMB,Zambia
+1703,ZWE,Zimbabwe
