@@ -3,23 +3,28 @@ from flask import Flask, render_template
 import plotly
 import plotly.express as px
 import pandas as pd
+import geopandas as gpd
 from scrap import table
 import json
 
 
 app = Flask(__name__)
 
-iso_alpha = pd.read_csv('iso_codes')
+boders = gpd.read_file('TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp')
+countries = boders[['NAME', 'ISO3', 'LON', 'LAT', 'geometry']]
+countries.rename(columns={'NAME': 'country'}, inplace=True)
+
 data = table()
 
 # fig.write_html('index.html', full_html=True)
 
 
 def create_map(group):
-    df_merge_col = pd.merge(data, iso_alpha, on='country')
+    df_merge_col = pd.merge(data, countries, on='country')
+    title = str(group)
 
-    fig = px.choropleth(df_merge_col, locations="iso_alpha", color=group,
-                        hover_name="country", title='confirmed covid19 cases', projection='natural earth',
+    fig = px.choropleth(df_merge_col, locations="ISO3", color=group,
+                        hover_name="country", title=title, projection='natural earth',
                         hover_data=['recovered', 'serious', 'deceased'])
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
@@ -43,6 +48,7 @@ def serious():
 def deceased():
     jsonmap = create_map(group='deceased')
     return render_template('deceased.html', jsonmap=jsonmap)
+
 
 @app.route('/recovered')
 def recovered():
