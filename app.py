@@ -40,8 +40,8 @@ def dashboard():
 
 @app.route('/serious/')
 def serious():
-    jsonmap = create_map(group='serious')
-    return render_template('serious.html', jsonmap=jsonmap)
+    # jsonmap = create_map(group='serious')
+    return render_template('test.html')
 
 
 @app.route('/deceased/')
