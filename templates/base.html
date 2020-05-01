@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    {% block head %}{% endblock %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>covid19_vis</title>
@@ -11,12 +12,12 @@
 </head>
 
 <body>
-    <ol class="breadcrumb">
+    <!-- <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url_for('dashboard') }}"><span>confirmed</span></a></li>
             <li class="breadcrumb-item"><a href="{{ url_for('serious') }}"><span>serious</span></a></li>
             <li class="breadcrumb-item"><a href="{{ url_for('deceased') }}"><span>deceased</span></a></li>
             <li class="breadcrumb-item"><a href="{{ url_for('recovered') }}"><span>recovered</span></a></li>
-        </ol>
+        </ol> -->
 
     <div id="covidmap" style="height: 100vh;">
         {% block body %}{% endblock %}

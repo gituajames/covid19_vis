@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    .legend {
+    line-height: 18px;
+    color: rgb(41, 40, 40);
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-
+1.11.3.min.js"></script>
+   <script src="static/dist/leaflet.ajax.js"></script>
+{% endblock%}
+{% block body %}
+<script>
+    
+    // data = {{ geojson | safe }};
+    // data = new L.GeoJSON.AJAX("{{ url_for('geojsondata') }}");
+    // var data = L.geoJson.ajax("{{ url_for('geojsondata') }}");
+    
+    var mymap = L.map('covidmap').setView([0, 0], 2);
+    
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiZ2l0dWFqYW1lcyIsImEiOiJjajg1enNyYm8wbjV6MzNvMG1sbDVva3FoIn0.HAJTaiMAH29daebpQ-Ob_g'
+}).addTo(mymap);
+
+    
+var look = {
+    "color": '#ff7800',
+    'weight': 1,
+    'opacity': .65,};
+
+function getColor(d) {
+    return d > 100000 ? '#800026' :
+           d > 10000  ? '#BD0026' :
+           d > 1000  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 100   ? '#FD8D3C' :
+           d > 10   ? '#FEB24C' :
+           d > 1   ? '#FED976' :
+                      '#FFEDA0';
+};
+
+
+
+$.getJSON('{{ url_for('geojsondata') }}', function(data){
+    // console.log(data.features[0].properties.confirmed)
+    for(i = 0; i <= data.features.length; i++){
+        // console.log(data.features[i].properties.active)
+
+        feature = data.features[i]
+        function style(feature){
+            return {
+                fillcolor: getColor(feature.properties.total_cases),
+                weight: 0.5,
+                opacity: 1,
+                color: getColor(feature.properties.active),
+                dashArray: '3',
+                fillOpacity: 0.7
+                }
+                }
+        function highlightFeature(e) {
+            var layer = e.target;
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+                });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+}
+
+function resetHighlight(e) {
+    data.features.resetStyle(e.target);
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        // click: zoomToFeature
+    });
+} 
+
+
+
+
+
+
+        L.geoJSON(data.features[i], {style: style,}).addTo(mymap);
+    }
+
+
+})
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+legend.addTo(mymap);
+
+
+
+// data.addTo(mymap)
+
+</script>
+{% endblock %}

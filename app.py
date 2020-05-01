@@ -10,8 +10,8 @@ import json
 
 app = Flask(__name__)
 
-boders = gpd.read_file('TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.shp')
-countries = boders[['NAME', 'ISO3', 'LON', 'LAT', 'geometry']]
+borders = gpd.read_file('TM_WORLD_BORDERS-0.3/TM_WORLD_BORDERS-0.3.1.shp')
+countries = borders[['NAME', 'ISO3', 'LON', 'LAT', 'geometry']]
 countries.rename(columns={'NAME': 'country'}, inplace=True)
 
 data = table()
@@ -25,7 +25,7 @@ def create_map(group):
 
     fig = px.choropleth(df_merge_col, locations="ISO3", color=group,
                         hover_name="country", title=title, projection='natural earth',
-                        hover_data=['recovered', 'serious', 'deceased'])
+                        hover_data=['total cases', 'new cases', 'active'])
 
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
@@ -34,8 +34,8 @@ def create_map(group):
 
 @app.route('/')
 def dashboard():
-    jsonmap = create_map(group='confirmed')
-    return render_template('confirmed.html', jsonmap=jsonmap)
+    # jsonmap = create_map(group='total cases')
+    return render_template('test.html')
 
 
 @app.route('/serious/')
@@ -54,3 +54,17 @@ def deceased():
 def recovered():
     jsonmap = create_map(group='recovered')
     return render_template('recovered.html', jsonmap=jsonmap)
+
+
+@app.route('/test')
+def test():
+    geodata = pd.merge(countries, data, on='country')
+    geojson = geodata.to_json()
+    return render_template('test.html', geojson=geojson)
+
+
+@app.route('/data')
+def geojsondata():
+    geodata = pd.merge(countries, data, on='country')
+    geojson = geodata.to_json()
+    return geojson

@@ -2,12 +2,13 @@
 A simple flask app to visualise the spread of corona worldwide.
 
 
-![alt](samples/sample.png)
-![alt](samples/sample2.png)
-![alt](samples/sample3.png)
+![alt](notebooks/samples/sample.png)
+![alt](notebooks/samples/sample2.png)
+![alt](notebooks/samples/sample3.png)
+![alt](notebooks/samples/newsample.png)
 
 Data used in this app is obtained from the links bellow.
 ## data sources
 	1. https://thematicmapping.org/downloads/world_borders.php
-	2. https://ncov2019.live/
+	2. https://www.worldometers.info/coronavirus/#countries
     
