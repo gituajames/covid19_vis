@@ -11,4 +11,6 @@ Data used in this app is obtained from the links bellow.
 ## data sources
 	1. https://thematicmapping.org/downloads/world_borders.php
 	2. https://www.worldometers.info/coronavirus/#countries
+
+https://covid19vis.herokuapp.com
     
